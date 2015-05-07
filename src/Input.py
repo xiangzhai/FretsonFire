@@ -94,6 +94,7 @@ class Input(Task):
 
     # Initialize LeapMotion
     self.leapmotionListener = LeapMotionListener()
+    self.leapmotionListener.set_tapped_cb(self.tapped_cb)
     self.leapController = Leap.Controller()
     self.leapController.add_listener(self.leapmotionListener)
 
@@ -192,12 +193,15 @@ class Input(Task):
       return "Joy #%d, %s" % (joy + 1, chr(ord('A') + but))
     return self.getSystemKeyName(id)
 
+  # TODO: simulate keyPressed && keyReleased
+  def tapped_cb(self, finger_index):
+    self.broadcastEvent(self.keyListeners, "keyPressed", pygame.K_F1, pygame.K_F1)
+
   def run(self, ticks):
     pygame.event.pump()
     for event in pygame.event.get():
       if event.type == pygame.KEYDOWN:
         if not self.broadcastEvent(self.priorityKeyListeners, "keyPressed", event.key, event.unicode):
-          print "broadcastEvent keyPressed", event.key
           self.broadcastEvent(self.keyListeners, "keyPressed", event.key, event.unicode)
       elif event.type == pygame.KEYUP:
         if not self.broadcastEvent(self.priorityKeyListeners, "keyReleased", event.key):

@@ -14,6 +14,15 @@ class LeapMotionListener(Leap.Listener):
     finger_names = ['Thumb', 'Index', 'Middle', 'Ring', 'Pinky']
     bone_names = ['Metacarpal', 'Proximal', 'Intermediate', 'Distal']
     state_names = ['STATE_INVALID', 'STATE_START', 'STATE_UPDATE', 'STATE_END']
+    pre_finger_pos = [.0, .0, .0, .0, .0]
+    __tapped_cb = None
+
+    def set_tapped_cb(self, tapped_cb):
+        self.__tapped_cb = tapped_cb
+
+    def __tapped(self, finger_index):
+        if self.__tapped_cb:
+            self.__tapped_cb(finger_index)
 
     def on_init(self, controller):
         print "Initialized"
@@ -83,6 +92,10 @@ class LeapMotionListener(Leap.Listener):
                     finger.length,
                     finger.width)
                 '''
+                if self.pre_finger_pos[finger.type()] - finger.tip_position[2] > 6.0:
+                    self.__tapped(finger.type())
+
+                self.pre_finger_pos[finger.type()] = finger.tip_position[2]
 
                 # Get bones
                 for b in range(0, 4):
