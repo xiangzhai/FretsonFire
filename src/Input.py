@@ -23,9 +23,11 @@
 import pygame
 import Log
 import Audio
+import Leap
 
 from Task import Task
 from Player import Controls
+from LeapMotionListener import LeapMotionListener
 
 class KeyListener:
   def keyPressed(self, key, unicode):
@@ -90,12 +92,20 @@ class Input(Task):
       self.joystickHats[j.get_id()] = [(0, 0)] * j.get_numhats() 
     Log.debug("%d joysticks found." % (len(self.joysticks)))
 
+    # Initialize LeapMotion
+    self.leapmotionListener = LeapMotionListener()
+    self.leapController = Leap.Controller()
+    self.leapController.add_listener(self.leapmotionListener)
+
     # Enable music events
     Audio.Music.setEndEvent(MusicFinished)
 
     # Custom key names
     self.getSystemKeyName = pygame.key.name
     pygame.key.name       = self.getKeyName
+
+  def __del__(self):
+      self.leapController.remove_listener(self.leapmotionListener)
 
   def reloadControls(self):
     self.controls = Controls()
@@ -187,6 +197,7 @@ class Input(Task):
     for event in pygame.event.get():
       if event.type == pygame.KEYDOWN:
         if not self.broadcastEvent(self.priorityKeyListeners, "keyPressed", event.key, event.unicode):
+          print "broadcastEvent keyPressed", event.key
           self.broadcastEvent(self.keyListeners, "keyPressed", event.key, event.unicode)
       elif event.type == pygame.KEYUP:
         if not self.broadcastEvent(self.priorityKeyListeners, "keyReleased", event.key):
