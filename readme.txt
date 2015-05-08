@@ -2,7 +2,7 @@
                         /_  /_) /_  / (
                        /   / \ /_  / __)
                       _        __    __  __
-                     (_)/\/   /_  / /_) /_
+                     (_)/\/   /_  / /_) /_       M.O.D
                              /   / / \ /_
 
                   P.L.E.A.S.E R.E.A.D install.txt
@@ -29,9 +29,9 @@
   |  1. Introduction                                                   |
  >>-------------------------------------------------------------------->>
 
-  Frets on Fire is a game of musical skill and fast fingers. The
-  aim of the game is to play guitar with the Leap Motion http://leapmotion.com 
-  as accurately as possible.
+  Frets on Fire M.O.D is a game of musical skill and fast fingers. The
+  aim of the game is to play guitar with the keyboard or Leap Motion 
+  http://leapmotion.com as accurately as possible.
 
  >>-------------------------------------------------------------------->>
   |  2. Requirements                                                   |
