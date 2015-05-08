@@ -207,6 +207,8 @@ class Input(Task):
     elif finger_index == 4:
       self.broadcastEvent(self.keyListeners, "keyPressed", pygame.K_F5, pygame.K_F5)
 
+    self.broadcastEvent(self.keyListeners, "keyPressed", pygame.K_RETURN, pygame.K_RETURN)
+
   def finger_released_cb(self, finger_index):
     if finger_index == 0:
       self.broadcastEvent(self.keyListeners, "keyReleased", pygame.K_F1)
@@ -218,6 +220,8 @@ class Input(Task):
       self.broadcastEvent(self.keyListeners, "keyReleased", pygame.K_F4)
     elif finger_index == 4:
       self.broadcastEvent(self.keyListeners, "keyReleased", pygame.K_F5)
+
+    self.broadcastEvent(self.keyListeners, "keyReleased", pygame.K_RETURN)
 
   def run(self, ticks):
     pygame.event.pump()

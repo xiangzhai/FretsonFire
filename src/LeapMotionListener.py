@@ -57,7 +57,6 @@ class LeapMotionListener(Leap.Listener):
 
         # Get hands
         for hand in frame.hands:
-
             handType = "Left hand" if hand.is_left else "Right hand"
 
             '''
@@ -95,15 +94,16 @@ class LeapMotionListener(Leap.Listener):
                     finger.length,
                     finger.width)
                 '''
-                if self.pre_finger_pos[finger.type()] - finger.tip_position[2] > 6.0:
-                    if self.__finger_pressed_cb:
-                        self.__finger_pressed_cb(finger.type())
+                if hand.is_right:
+                    if self.pre_finger_pos[finger.type()] - finger.tip_position[2] > 6.0:
+                        if self.__finger_pressed_cb:
+                            self.__finger_pressed_cb(finger.type())
 
-                if finger.tip_position[2] - self.pre_finger_pos[finger.type()] > 5.0:
-                    if self.__finger_released_cb:
-                        self.__finger_released_cb(finger.type())
+                    if finger.tip_position[2] - self.pre_finger_pos[finger.type()] > 5.0:
+                        if self.__finger_released_cb:
+                            self.__finger_released_cb(finger.type())
 
-                self.pre_finger_pos[finger.type()] = finger.tip_position[2]
+                    self.pre_finger_pos[finger.type()] = finger.tip_position[2]
 
                 # Get bones
                 for b in range(0, 4):
@@ -118,6 +118,7 @@ class LeapMotionListener(Leap.Listener):
 
         # Get tools
         for tool in frame.tools:
+            pass
             '''
             print "  Tool id: %d, position: %s, direction: %s" % (
                 tool.id, tool.tip_position, tool.direction)
