@@ -5,23 +5,25 @@
                      (_)/\/   /_  / /_) /_
                              /   / / \ /_
 
-             >>------------------------------------>>
-              |   http://www.unrealvoodoo.org      |
-             >>------------------------------------>>
-              |                                    |
-              | 1. Introduction                    |
-              |                                    |
-              | 2. Requirements                    |
-              |                                    |
-              | 3. Playing the game                |
-              |                                    |
-              | 4. Editing and Importing songs     |
-              |                                    |
-              | 5. Importing Guitar Hero(tm) songs |
-              |                                    |
-              | 6. Troubleshooting                 |
-              |                                    |
-             >>------------------------------------>>
+                  P.L.E.A.S.E R.E.A.D install.txt
+             >>------------------------------------------------>>
+              |   http://www.unrealvoodoo.org                  |
+              |   https://gitcafe.com/xiangzhai/FretsOnFire    |
+             >>------------------------------------------------>>
+              |                                                |
+              | 1. Introduction                                |
+              |                                                |
+              | 2. Requirements                                |
+              |                                                |
+              | 3. Playing the game                            |
+              |                                                |
+              | 4. Editing and Importing songs                 |
+              |                                                |
+              | 5. Importing Guitar Hero(tm) songs             |
+              |                                                |
+              | 6. Troubleshooting                             |
+              |                                                |
+             >>------------------------------------------------>>
 
  >>-------------------------------------------------------------------->>
   |  1. Introduction                                                   |
@@ -30,7 +32,6 @@
   Frets on Fire is a game of musical skill and fast fingers. The
   aim of the game is to play guitar with the Leap Motion http://leapmotion.com 
   as accurately as possible.
-  Please read install.txt to build && install for ArchLinux.
 
  >>-------------------------------------------------------------------->>
   |  2. Requirements                                                   |

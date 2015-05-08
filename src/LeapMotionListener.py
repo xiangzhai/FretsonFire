@@ -1,6 +1,6 @@
 ################################################################################
-# Copyright (C) 2015 Leslie Zhai <xiang.zhai@i-soft.com.cn>                    #
 # Copyright (C) 2012-2013 Leap Motion, Inc. All rights reserved.               #
+# Copyright (C) 2015 Leslie Zhai <xiang.zhai@i-soft.com.cn>                    #
 # Leap Motion proprietary and confidential. Not for distribution.              #
 # Use subject to the terms of the Leap Motion SDK Agreement available at       #
 # https://developer.leapmotion.com/sdk_agreement, or another agreement         #
