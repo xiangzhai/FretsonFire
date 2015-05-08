@@ -13,6 +13,13 @@ First, the following supporting Python libraries should be installed.
 	- numpy
 	- Optional: psyco specializing compiler
 
+Dependences for ArchLinux
+
+    - archlinux-leap-motion-driver 
+      https://gitcafe.com/xiangzhai/archlinux-leap-motion-driver
+    - archlinux-leap-motion-sdk
+      https://gitcafe.com/xiangzhai/archlinux-leap-motion-sdk
+
 After this, the game can be started by running the src/FretsOnFire.py file. For
 example, in Linux and Mac OS X this can be done from the terminal with the
 following commands:

@@ -94,7 +94,8 @@ class Input(Task):
 
     # Initialize LeapMotion
     self.leapmotionListener = LeapMotionListener()
-    self.leapmotionListener.set_tapped_cb(self.tapped_cb)
+    self.leapmotionListener.set_finger_pressed_cb(self.finger_pressed_cb)
+    self.leapmotionListener.set_finger_released_cb(self.finger_released_cb)
     self.leapController = Leap.Controller()
     self.leapController.add_listener(self.leapmotionListener)
 
@@ -193,9 +194,29 @@ class Input(Task):
       return "Joy #%d, %s" % (joy + 1, chr(ord('A') + but))
     return self.getSystemKeyName(id)
 
-  # TODO: simulate keyPressed && keyReleased
-  def tapped_cb(self, finger_index):
-    self.broadcastEvent(self.keyListeners, "keyPressed", pygame.K_F1, pygame.K_F1)
+  def finger_pressed_cb(self, finger_index):
+    if finger_index == 0:
+      self.broadcastEvent(self.keyListeners, "keyPressed", pygame.K_F1, pygame.K_F1)
+    elif finger_index == 1:
+      self.broadcastEvent(self.keyListeners, "keyPressed", pygame.K_F2, pygame.K_F2)
+    elif finger_index == 2:
+      self.broadcastEvent(self.keyListeners, "keyPressed", pygame.K_F3, pygame.K_F3)
+    elif finger_index == 3:
+      self.broadcastEvent(self.keyListeners, "keyPressed", pygame.K_F4, pygame.K_F4)
+    elif finger_index == 4:
+      self.broadcastEvent(self.keyListeners, "keyPressed", pygame.K_F5, pygame.K_F5)
+
+  def finger_released_cb(self, finger_index):
+    if finger_index == 0:
+      self.broadcastEvent(self.keyListeners, "keyReleased", pygame.K_F1)
+    elif finger_index == 1:
+      self.broadcastEvent(self.keyListeners, "keyReleased", pygame.K_F2)
+    elif finger_index == 2:
+      self.broadcastEvent(self.keyListeners, "keyReleased", pygame.K_F3)
+    elif finger_index == 3:
+      self.broadcastEvent(self.keyListeners, "keyReleased", pygame.K_F4)
+    elif finger_index == 4:
+      self.broadcastEvent(self.keyListeners, "keyReleased", pygame.K_F5)
 
   def run(self, ticks):
     pygame.event.pump()

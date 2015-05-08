@@ -13,8 +13,6 @@
               |                                    |
               | 2. Requirements                    |
               |                                    |
-              | 3. Build && Install                |
-              |                                    |
               | 3. Playing the game                |
               |                                    |
               | 4. Editing and Importing songs     |
@@ -30,8 +28,9 @@
  >>-------------------------------------------------------------------->>
 
   Frets on Fire is a game of musical skill and fast fingers. The
-  aim of the game is to play guitar with the keyboard as accurately
-  as possible.
+  aim of the game is to play guitar with the Leap Motion http://leapmotion.com 
+  as accurately as possible.
+  Please read install.txt to build && install for ArchLinux.
 
  >>-------------------------------------------------------------------->>
   |  2. Requirements                                                   |
@@ -55,18 +54,9 @@
 
     >> Mac OS X 10.5 or later
     >> OpenGL accelerated video card
-    
- >>-------------------------------------------------------------------->>
-  |  3. Build && Install                                               |
- >>-------------------------------------------------------------------->>
-
-  ArchLinux:
-
-    sudo pacman -S python2-pygame python2-pillow python2-opengl
-
 
  >>-------------------------------------------------------------------->>
-  |  4. Playing the game                                               |
+  |  3. Playing the game                                               |
  >>-------------------------------------------------------------------->>
 
   First of all, these are the keys you'll need to navigate the menus:
@@ -96,7 +86,7 @@
   you twice the points of normal notes.
 
  >>-------------------------------------------------------------------->>
-  |  5. Editing and Importing Songs                                    |
+  |  4. Editing and Importing Songs                                    |
  >>-------------------------------------------------------------------->>
  
   With the included song editor you can import your own songs into the
@@ -129,7 +119,7 @@
   Remember that you shouldn't place notes on top of each other.
 
  >>-------------------------------------------------------------------->>
-  |  6. Importing Guitar Hero(tm) songs                                |
+  |  5. Importing Guitar Hero(tm) songs                                |
  >>-------------------------------------------------------------------->>
 
   The game has a built-in importer for the songs in Guitar Hero(tm) by
@@ -158,7 +148,7 @@
   mostly pick up where it left off when you run it again.
 
  >>-------------------------------------------------------------------->>
-  |  7. Troubleshooting                                                |
+  |  6. Troubleshooting                                                |
  >>-------------------------------------------------------------------->>
 
   Q: Some chords don't work.
