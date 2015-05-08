@@ -16,13 +16,9 @@ class LeapMotionListener(Leap.Listener):
     state_names = ['STATE_INVALID', 'STATE_START', 'STATE_UPDATE', 'STATE_END']
     pre_finger_pos = [.0, .0, .0, .0, .0]
     __finger_pressed_cb = None
-    __finger_released_cb = None
 
     def set_finger_pressed_cb(self, finger_pressed_cb):
         self.__finger_pressed_cb = finger_pressed_cb
-
-    def set_finger_released_cb(self, finger_released_cb):
-        self.__finger_released_cb = finger_released_cb
 
     def on_init(self, controller):
         print "Initialized"
@@ -95,13 +91,9 @@ class LeapMotionListener(Leap.Listener):
                     finger.width)
                 '''
                 if hand.is_right:
-                    if self.pre_finger_pos[finger.type()] - finger.tip_position[2] > 6.0:
+                    if self.pre_finger_pos[finger.type()] - finger.tip_position[2] > 3.0:
                         if self.__finger_pressed_cb:
                             self.__finger_pressed_cb(finger.type())
-
-                    if finger.tip_position[2] - self.pre_finger_pos[finger.type()] > 5.0:
-                        if self.__finger_released_cb:
-                            self.__finger_released_cb(finger.type())
 
                     self.pre_finger_pos[finger.type()] = finger.tip_position[2]
 

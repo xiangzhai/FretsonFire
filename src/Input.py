@@ -24,6 +24,7 @@
 import pygame
 import Log
 import Audio
+import time
 import Leap
 
 from Task import Task
@@ -96,7 +97,6 @@ class Input(Task):
     # Initialize LeapMotion
     self.leapmotionListener = LeapMotionListener()
     self.leapmotionListener.set_finger_pressed_cb(self.finger_pressed_cb)
-    self.leapmotionListener.set_finger_released_cb(self.finger_released_cb)
     self.leapController = Leap.Controller()
     self.leapController.add_listener(self.leapmotionListener)
 
@@ -196,33 +196,28 @@ class Input(Task):
     return self.getSystemKeyName(id)
 
   def finger_pressed_cb(self, finger_index):
-    if finger_index == 0:
-      self.broadcastEvent(self.keyListeners, "keyPressed", pygame.K_F1, pygame.K_F1)
-    elif finger_index == 1:
-      self.broadcastEvent(self.keyListeners, "keyPressed", pygame.K_F2, pygame.K_F2)
-    elif finger_index == 2:
-      self.broadcastEvent(self.keyListeners, "keyPressed", pygame.K_F3, pygame.K_F3)
-    elif finger_index == 3:
-      self.broadcastEvent(self.keyListeners, "keyPressed", pygame.K_F4, pygame.K_F4)
-    elif finger_index == 4:
-      self.broadcastEvent(self.keyListeners, "keyPressed", pygame.K_F5, pygame.K_F5)
+    keycode = None
 
+    if finger_index == 0:
+      keycode = pygame.K_F1
+    elif finger_index == 1:
+      keycode = pygame.K_F2
+    elif finger_index == 2:
+      keycode = pygame.K_F3
+    elif finger_index == 3:
+      keycode = pygame.K_F4
+    elif finger_index == 4:
+      keycode = pygame.K_F5
+    
+    if keycode == None:
+      pass
+
+    self.broadcastEvent(self.keyListeners, "keyPressed", keycode, keycode)
     self.broadcastEvent(self.keyListeners, "keyPressed", pygame.K_RETURN, pygame.K_RETURN)
-
-  def finger_released_cb(self, finger_index):
-    if finger_index == 0:
-      self.broadcastEvent(self.keyListeners, "keyReleased", pygame.K_F1)
-    elif finger_index == 1:
-      self.broadcastEvent(self.keyListeners, "keyReleased", pygame.K_F2)
-    elif finger_index == 2:
-      self.broadcastEvent(self.keyListeners, "keyReleased", pygame.K_F3)
-    elif finger_index == 3:
-      self.broadcastEvent(self.keyListeners, "keyReleased", pygame.K_F4)
-    elif finger_index == 4:
-      self.broadcastEvent(self.keyListeners, "keyReleased", pygame.K_F5)
-
+    time.sleep(0.1)
     self.broadcastEvent(self.keyListeners, "keyReleased", pygame.K_RETURN)
-
+    self.broadcastEvent(self.keyListeners, "keyReleased", keycode)
+  
   def run(self, ticks):
     pygame.event.pump()
     for event in pygame.event.get():
