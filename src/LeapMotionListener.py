@@ -45,7 +45,10 @@ class LeapMotionListener(Leap.Listener):
 
     def on_frame(self, controller):
         # Get the most recent frame and report some basic information
-        frame = controller.frame()
+        try:
+            frame = controller.frame()
+        except:
+            return
 
         '''
         print "Frame id: %d, timestamp: %d, hands: %d, fingers: %d, tools: %d, gestures: %d" % (
