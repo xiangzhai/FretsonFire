@@ -77,7 +77,7 @@ options = {
    'app': ["src/FretsOnFire.py"],
    'argv_emulation': True,
    'dist_dir': 'dist/mac',
-   'frameworks': '/opt/local/lib/libvorbisfile.dylib',
+   'frameworks': '/usr/local/lib/libvorbisfile.dylib',
    #'dylib_excludes': 'OpenGL,AGL',
    'iconfile': 'data/icon_mac_composed.icns',
    'includes': SceneFactory.scenes,
@@ -94,6 +94,7 @@ try:
     fn = line.strip()
     if any([fn.endswith(e) for e in ignoreExts]): continue
     if fn in ["Makefile", "MANIFEST", "MANIFEST.in"]: continue
+    if not os.path.exists(fn): continue
     dataFiles.append((os.path.dirname(fn), [fn]))
 except IOError:
   print "Unable to open MANIFEST. Please run python setup.py sdist -o to generate it."

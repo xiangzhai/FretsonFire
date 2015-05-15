@@ -15,7 +15,7 @@ First, the following supporting Python libraries should be installed.
 
 Dependences for ArchLinux
 
-    - archlinux-leap-motion-driver 
+    - archlinux-leap-motion-driver
       https://gitcafe.com/xiangzhai/archlinux-leap-motion-driver
     - archlinux-leap-motion-sdk
       https://gitcafe.com/xiangzhai/archlinux-leap-motion-sdk
@@ -35,8 +35,8 @@ A redistributable installation package for the game can be created as follows.
 For Windows:
 
 	1. Install Nullsoft's NSIS installation system.
-           Note: Frets on Fire assumes that the NSIS tool can be found at 
-           c:/Program Files/NSIS/makeNSIS.exe. This can be overridden by 
+           Note: Frets on Fire assumes that the NSIS tool can be found at
+           c:/Program Files/NSIS/makeNSIS.exe. This can be overridden by
            passing the parameter MAKENSIS=<path to makeNSIS.exe> to make in
            the following step.
 
@@ -47,10 +47,16 @@ For Windows:
 		$ make dist
 
 For Mac OS X:
+	1. Install requirements using homebrew
+		$ brew install libvorbis gettext
+		and force link gettext
+		$ brew link gettext --force
+		after packaging is done, unlink gettext
+		$ brew unlink gettext
 
-	1. Install py2app.
+	2. Install py2app.
 
-	2. Run the following command
+	3. Run the following command
 
 		$ make dist
 
