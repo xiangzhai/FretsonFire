@@ -186,7 +186,15 @@ class Font:
     glDisable(GL_TEXTURE_2D)
 
   def _allocateGlyphTexture(self):
-    t = TextureAtlas(size = glGetInteger(GL_MAX_TEXTURE_SIZE))
+    """
+    NOTE: under Windows 8, glGetInteger(GL_MAX_TEXTURE_SIZE) is often 16384
+          it is too big! so just change it to 8192 the value under ArchLinux
+    """
+    _size = glGetInteger(GL_MAX_TEXTURE_SIZE)
+    if _size > 8192:
+      _size = 8192
+    
+    t = TextureAtlas(size = _size)
     t.texture.setFilter(GL_LINEAR, GL_LINEAR)
     t.texture.setRepeat(GL_CLAMP, GL_CLAMP)
     self.glyphTextures.append(t)
