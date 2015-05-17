@@ -25,13 +25,15 @@ sys.path.append("src")
 from setuptools import setup
 import sys, SceneFactory, Version, glob, os
 import distutils.command.sdist
+if os.name == "nt":
+  import py2exe
 
 options = {
   "py2exe": {
     "dist_dir":  "dist/win32",
     "includes":  SceneFactory.scenes,
     "excludes":  [
-      "OpenGL",   # OpenGL must be excluded and handled manually due to a py2exe bug
+      "OpenGL",   # OpenGL must be excluded and handled manually due to a py2exe bug, it also needs to rebuild PyOpenGL 3.0.1 egg
       "glew.gl.apple",
       "glew.gl.ati",
       "glew.gl.atix",
@@ -115,14 +117,27 @@ elif sys.platform == "darwin":
 else:
   setupRequires = []
 
-setup(version = Version.version(),
-      name = "Frets on Fire",
-      url = "http://www.unrealvoodoo.org",
-      author = "Unreal Voodoo",
-      author_email = "contact@unrealvoodoo.org",
-      license = "GPLv2",
-      description = "Frets on Fire is a game of musical skill and fast fingers. The aim of the game is to play guitar with the keyboard as accurately as possible.",
-      data_files = dataFiles,
-      options = options,
-      setup_requires = setupRequires,
-      *extraOpts)
+if os.name == "nt":
+  setup(version = Version.version(),
+        name = "Frets on Fire M.O.D",
+        url = "https://gitcafe.com/xiangzhai/FretsonFire",
+        author = "Leslie Zhai",
+        author_email = "xiang.zhai@i-soft.com.cn",
+        license = "GPLv2",
+        description = "Frets on Fire is a game of musical skill and fast fingers. The aim of the game is to play guitar with the keyboard or Leap Motion as accurately as possible.",
+        data_files = dataFiles,
+        options = options,
+        setup_requires = setupRequires,
+        windows = extraOpts['windows'], 
+        zipfile = "data/library.zip")
+else:
+  setup(version = Version.version(),
+        name = "Frets on Fire M.O.D",
+        url = "https://gitcafe.com/xiangzhai/FretsonFire",
+        author = "Sonald",
+        author_email = "siyuan.cao@i-soft.com.cn",
+        license = "GPLv2",
+        description = "Frets on Fire is a game of musical skill and fast fingers. The aim of the game is to play guitar with the keyboard or Leap Motion as accurately as possible.",
+        data_files = dataFiles,
+        options = options,
+        setup_requires = setupRequires)
